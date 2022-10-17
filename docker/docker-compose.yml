@@ -1,5 +1,4 @@
 
-
 version: "3.9"
 services:
   web:
@@ -10,14 +9,14 @@ services:
     ports:
       - "3000:3000"
   db:
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
+    image: mysql:5.7
+    restart: always
     environment:
-      - POSTGRES_HOST_AUTH_METHOD=trust
-      - POSTGRES_DB=db_air
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_DATABASE: development
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
     ports:
-      - "5432:5432"
+      - "3307:3306"
   backend:
     image: backend
     volumes:
@@ -31,5 +30,5 @@ services:
     depends_on:
      - "db"
 
-    command: ["bash", "./wait-for-it.sh", "db:5432", "--timeout=0", "--strict", "--", "bash", "./start-backend.sh"]
+    command: ["bash", "./wait-for-it.sh", "db:3306", "--timeout=0", "--strict", "--", "bash", "./start-backend.sh"]
 

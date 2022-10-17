@@ -8,26 +8,18 @@ import Hammer from 'rc-hammerjs';
 
 import Header from './DocumentationHeader';
 import Sidebar from './DocumentationSidebar';
-import { openSidebar, closeSidebar, changeActiveSidebarItem, toggleSidebar } from '../actions/navigation';
+import {
+  openSidebar,
+  closeSidebar,
+  changeActiveSidebarItem,
+  toggleSidebar,
+} from 'store/actions/navigationActions';
 import s from '../components/Layout/Layout.module.scss';
 import sd from './styles.module.scss';
 
-import Overview from './pages/getting-started/Overview'
+import Overview from './pages/getting-started/Overview';
 import Licences from './pages/getting-started/Licences';
 import QuickStart from './pages/getting-started/QuickStart';
-import Alerts from './pages/components/Alerts';
-import Badge from './pages/components/Badge';
-import Buttons from './pages/components/Buttons';
-import Card from './pages/components/Card';
-import Carousel from './pages/components/Carousel';
-import Modal from './pages/components/Modal';
-import Nav from './pages/components/Nav';
-import Navbar from './pages/components/Navbar';
-import Popovers from './pages/components/Popovers';
-import Progress from './pages/components/Progress';
-import Tabs from './pages/components/Tabs';
-import Libs from './pages/Libs';
-import Pages from './pages/Pages';
 
 class Layout extends React.Component {
   static propTypes = {
@@ -49,9 +41,7 @@ class Layout extends React.Component {
       chatOpen: false,
       width: window.innerWidth,
     };
-
   }
-
 
   componentDidMount() {
     const staticSidebar = JSON.parse(localStorage.getItem('staticSidebar'));
@@ -70,9 +60,9 @@ class Layout extends React.Component {
   handleResize() {
     this.setState({
       width: window.innerWidth,
-    })
+    });
 
-    if(window.innerWidth < 768 && this.props.sidebarOpened) {
+    if (window.innerWidth < 768 && this.props.sidebarOpened) {
       this.props.dispatch(closeSidebar());
     }
   }
@@ -110,22 +100,21 @@ class Layout extends React.Component {
                   <Sidebar width={this.state.width} />
                   <Col xl={10} md={9}>
                     <Switch>
-                      <Route path="/documentation/getting-started/overview" exact component={Overview} />
-                      <Route path="/documentation/getting-started/licences" exact component={Licences} />
-                      <Route path="/documentation/getting-started/quick-start" exact component={QuickStart} />
-                      <Route path="/documentation/components/alerts" exact component={Alerts} />
-                      <Route path="/documentation/components/badge" exact component={Badge} />
-                      <Route path="/documentation/components/buttons" exact component={Buttons} />
-                      <Route path="/documentation/components/card" exact component={Card} />
-                      <Route path="/documentation/components/carousel" exact component={Carousel} />
-                      <Route path="/documentation/components/modal" exact component={Modal} />
-                      <Route path="/documentation/components/nav" exact component={Nav} />
-                      <Route path="/documentation/components/navbar" exact component={Navbar} />
-                      <Route path="/documentation/components/popovers" exact component={Popovers} />
-                      <Route path="/documentation/components/tabs-accordion" exact component={Tabs} />
-                      <Route path="/documentation/components/progress" exact component={Progress} />
-                      <Route path="/documentation/libs" exact component={Libs} />
-                      <Route path="/documentation/pages" exact component={Pages} />
+                      <Route
+                        path="/documentation/getting-started/overview"
+                        exact
+                        component={Overview}
+                      />
+                      <Route
+                        path="/documentation/getting-started/licences"
+                        exact
+                        component={Licences}
+                      />
+                      <Route
+                        path="/documentation/getting-started/quick-start"
+                        exact
+                        component={QuickStart}
+                      />
                     </Switch>
                   </Col>
                 </div>

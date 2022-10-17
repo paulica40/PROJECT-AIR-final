@@ -139,7 +139,7 @@ class Auth {
 
     try {
       const token = await UsersDBApi.generatePasswordResetToken(email);
-      link = `${host}/password-reset?token=${token}`;
+      link = `${host}#/password-reset?token=${token}`;
     } catch (error) {
       console.error(error);
       throw new ValidationError('auth.passwordReset.error');
