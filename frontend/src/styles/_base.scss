@@ -24,40 +24,6 @@
   animation-duration: 0.5s;
 }
 
-.chat-notification-sing {
-  position: absolute;
-  top: 20px;
-  left: 14px;
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: theme-color('danger');
-}
-
-#notification-buttons {
-  display: flex;
-
-  button {
-    flex: 1;
-    font-family: $font-family-base;
-    font-size: 0.875rem;
-    background-color: #f8f8f8;
-    color: #343434;
-
-    &.active {
-      background-color: #dfdfdf;
-      background-image: none;
-      border-color: #adadad;
-      box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.12);
-    }
-  }
-}
-
-.form-group {
-  margin-bottom: 1rem;
-}
-
 .btn-toolbar .btn {
   margin-left: 0.5rem;
 }
@@ -193,14 +159,14 @@ table > thead > tr > th {
   margin: -1px -1px calc(#{$grid-gutter-width} - 1px) -1px;
 }
 
-.sortable-chosen { 
-  opacity: 1!important
+.sortable-chosen {
+  opacity: 1 !important;
 }
 
 .widget-placeholder-react {
-  background: rgba($white, 0.4)!important;
-  border: 1px dashed $gray-600!important;
-  margin: -1px -1px calc(#{$grid-gutter-width} - 1px) -1px!important;
+  background: rgba($white, 0.4) !important;
+  border: 1px dashed $gray-600 !important;
+  margin: -1px -1px calc(#{$grid-gutter-width} - 1px) -1px !important;
   > * {
     opacity: 0;
   }
@@ -275,7 +241,7 @@ table > thead > tr > th {
   .author {
     margin-top: 0;
     margin-bottom: 2px;
-    color: $blue;
+    color: #7ca9dd;
   }
 
   .comment-body {
@@ -300,10 +266,10 @@ table > thead > tr > th {
   padding: 0;
 }
 
-.bg-white {
-  background-color: #fff;
-}
-
-.fill {
-  fill: var(--sidebar-color);
+.react-bs-table-container {
+  width: 98%;
+  min-width: 900px;
+  tbody tr td:last-child {
+    white-space: normal;
+  }
 }

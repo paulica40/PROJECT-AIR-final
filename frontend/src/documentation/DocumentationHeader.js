@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
+import { Navbar, Nav, NavItem, NavLink } from 'reactstrap';
+
 import {
-  Navbar,
-  Nav,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
+  openSidebar,
+  closeSidebar,
+  changeActiveSidebarItem,
+} from 'store/actions/navigationActions';
 
-import { openSidebar, closeSidebar, changeActiveSidebarItem } from '../actions/navigation';
-
-import s from '../components/Header/Header.module.scss'; // eslint-disable-line css-modules/no-unused-class
+import s from '../components/Header/Header.module.scss'; // eslint-disable-line
 import sd from './styles.module.scss';
 
 import twitterLogo from '../images/documentation/twitter-logo.svg';
@@ -69,23 +68,34 @@ class Header extends React.Component {
       <Navbar className={classnames(s.root, sd.header, 'd-print-none')}>
         <div className="container">
           <div className="row w-100 d-flex align-items-center">
-            <Nav className={sd.logoNav}>
+            <Nav>
               <NavItem>
                 <NavLink className="fs-lg d-lg-none d-md-none" onClick={this.switchSidebar}>
-                  <span className="rounded rounded-lg text-white d-md-none"><i className="la la-bars" /></span>
+                  <span className="rounded rounded-lg text-white d-md-none">
+                    <i className="la la-bars" />
+                  </span>
                   <i className="la la-bars ml-3 d-sm-down-none" />
                 </NavLink>
               </NavItem>
               <NavItem>
-                <div className={classnames(sd.logo, 'px-4')}>
-                  <span className={'fw-semi-bold'}>Sing App React</span> &nbsp;  Documentation
-                </div>
+                <NavLink
+                  className={classnames(s.logo, 'd-sm-down-none px-4')}
+                  href={'/documentation'}
+                >
+                  <span className={'fw-semi-bold'}>React User Management</span> &nbsp; Documentation
+                </NavLink>
               </NavItem>
             </Nav>
 
+            <NavLink className={`${s.navbarBrand} d-md-none text-muted`}>
+              <i className="fa fa-circle text-gray mr-n-sm" />
+              <i className="fa fa-circle text-warning" />
+              &nbsp; documentation &nbsp;
+              <i className="fa fa-circle text-warning mr-n-sm" />
+              <i className="fa fa-circle text-muted" />
+            </NavLink>
 
-
-            <Nav className={sd.docsNav}>
+            <Nav className="ml-auto">
               <NavItem className="d-flex alight-items-center d-md-down-none">
                 <NavLink href="https://twitter.com/flatlogic" className="mr-1">
                   <img src={twitterLogo} alt="twitter" />
@@ -112,10 +122,12 @@ class Header extends React.Component {
                     Live Preview
                   </Link>
                 </div>
-                <NavLink href="https://flatlogic.com/admin-dashboards/sing-app-react" target="_blank" className="mr-1">
-                  <button className="btn btn-warning text-gray fw-semi-bold">
-                    Buy Now
-                  </button>
+                <NavLink
+                  href="https://flatlogic.com/admin-dashboards/react-user-management"
+                  target="_blank"
+                  className="mr-1"
+                >
+                  <button className="btn btn-warning text-gray fw-semi-bold">Buy Now</button>
                 </NavLink>
               </NavItem>
             </Nav>
@@ -134,4 +146,3 @@ function mapStateToProps(store) {
 }
 
 export default withRouter(connect(mapStateToProps)(Header));
-
