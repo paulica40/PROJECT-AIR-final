@@ -514,16 +514,14 @@ module.exports = class UsersDBApi {
     const token = crypto.randomBytes(20).toString('hex');
     const tokenExpiresAt = Date.now() + 360000;
 
-    if (users) {
-      await users.update(
-        {
-          [keyNames[0]]: token,
-          [keyNames[1]]: tokenExpiresAt,
-          updatedById: currentUser.id,
-        },
-        { transaction },
-      );
-    }
+    await users.update(
+      {
+        [keyNames[0]]: token,
+        [keyNames[1]]: tokenExpiresAt,
+        updatedById: currentUser.id,
+      },
+      { transaction },
+    );
 
     return token;
   }

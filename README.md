@@ -31,7 +31,7 @@
       - `services` - contains such folders as `emails` and `notifications`.   
     </details> 
 
-  - Database: mySQL
+  - Database: PostgreSQL
 
   -----------------------
 ### We offer 2 ways how to start the project locally: by running Frontend and Backend or with Docker.
@@ -43,23 +43,52 @@
 
 > Please change current folder: `cd backend`
 
+#### Install local dependencies:
+`yarn install`
+
+  ------------
+
 #### Adjust local db:
+##### 1.  Install postgres:
+
 MacOS:
 
-1. Download MySQL database server: ([https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/))
-2. Install the package.
-3. Afterwards, in the terminal move to the next directory: `cd backend/src/db/db.config.js`
-4. Change development.password  to that you set for the root on MySQL installation process.
+`brew install postgres`
 
-Windows:
-
-1. Download MySQL database server from the following link: ([http://dev.mysql.com/downloads/installer/](http://dev.mysql.com/downloads/installer/)).
-2. Install the package and select Server Machine as the configuration type.
+    > if you don’t have ‘brew‘ please install it (https://brew.sh) and repeat step `brew install postgres`.
 
 Ubuntu:
 
-1. `sudo apt update`
-2. `sudo apt install mysql-server`
+`sudo apt update`
+
+`sudo apt install postgresql postgresql-contrib`
+
+##### 2. Create db and admin user:
+Before run and test connection, make sure you have created a database as described in the above configuration. You can use the `psql` command to create a user and database.
+
+`psql postgres --u postgres`
+
+Next, type this command for creating a new user with password then give access for creating the database.
+
+`postgres-# CREATE ROLE admin WITH LOGIN PASSWORD 'admin_pass';`
+
+`postgres-# ALTER ROLE admin CREATEDB;`
+
+Quit `psql` then log in again using the new user that previously created.
+
+`postgres-# \q`
+
+`psql postgres -U admin`
+
+Type this command to creating a new database.
+
+`postgres=> CREATE DATABASE db_{your_project_name};`
+
+Then give that new user privileges to the new database then quit the `psql`.
+
+`postgres=> GRANT ALL PRIVILEGES ON DATABASE db_{your_project_name} TO admin;`
+
+`postgres=> \q`
 
   ------------
 

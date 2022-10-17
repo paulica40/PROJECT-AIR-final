@@ -3,7 +3,7 @@ const os = require('os');
 const config = {
   gcloud: {
     bucket: 'fldemo-files',
-    hash: 'fbd7ac505d51851cea89bf84f37a1fbd',
+    hash: '467f80e0c76b1c4da343e8c2bca16b09',
   },
   bcrypt: {
     saltRounds: 12,
