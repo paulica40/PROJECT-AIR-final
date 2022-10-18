@@ -197,7 +197,7 @@ module.exports = function (sequelize, DataTypes) {
       Pocu: {
         type: DataTypes.ENUM,
 
-        values: ['DA', 'NU'],
+        values: ['Da', 'Nu'],
       },
 
 
