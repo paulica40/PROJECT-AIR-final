@@ -1,4 +1,4 @@
-import { v4 as uuid } from 'uuid';
+import * as uuid from 'uuid/v4';
 import Axios from 'axios';
 import config from 'config';
 
@@ -24,12 +24,17 @@ export default class FileUploader {
     }
 
     if (schema.size && file.size > schema.size) {
-      throw new Error('File is too big.');
+      throw new Error(
+        'File is too big.'
+      );
     }
 
     const extension = extractExtensionFrom(file.name);
 
-    if (schema.formats && !schema.formats.includes(extension)) {
+    if (
+      schema.formats &&
+      !schema.formats.includes(extension)
+    ) {
       throw new Error('Invalid format');
     }
   }
@@ -46,7 +51,11 @@ export default class FileUploader {
     const filename = `${id}.${extension}`;
     const privateUrl = `${path}/${filename}`;
 
-    const publicUrl = await this.uploadToServer(file, path, filename);
+    const publicUrl = await this.uploadToServer(
+      file,
+      path,
+      filename,
+    );
 
     return {
       id: id,
@@ -62,12 +71,14 @@ export default class FileUploader {
     const formData = new FormData();
     formData.append('file', file);
     formData.append('filename', filename);
-    const uri = `/file/upload/${path}`;
-    await Axios.post(uri, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
+    const uri = `${config.baseURLApi}/file/upload/${path}`;
+    await Axios.post(uri, formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       },
-    });
+    );
 
     const privateUrl = `${path}/${filename}`;
 

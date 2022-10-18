@@ -1,23 +1,29 @@
-import React, { useState, useRef } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FileUploader from 'components/FormItems/uploaders/UploadService';
 import Errors from 'components/FormItems/error/errors';
 
-const FilesUploader = (props) => {
-  const { value, onChange, schema, path, max, readonly } = props;
+class FilesUploader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false,
+    };
+    this.input = React.createRef();
+  }
 
-  const [loading, setLoading] = useState(false);
-  const inputElement = useRef(null);
+  value = () => {
+    const { value } = this.props;
 
-  const valuesArr = () => {
     if (!value) {
       return [];
     }
+
     return Array.isArray(value) ? value : [value];
   };
 
-  const fileList = () => {
-    return valuesArr().map((item) => ({
+  fileList = () => {
+    return this.value().map((item) => ({
       uid: item.id || undefined,
       name: item.name,
       status: 'done',
@@ -25,11 +31,13 @@ const FilesUploader = (props) => {
     }));
   };
 
-  const handleRemove = (id) => {
-    onChange(valuesArr().filter((item) => item.id !== id));
+  handleRemove = (id) => {
+    this.props.onChange(
+      this.value().filter((item) => item.id !== id),
+    );
   };
 
-  const handleChange = async (event) => {
+  handleChange = async (event) => {
     try {
       const files = event.target.files;
 
@@ -39,75 +47,103 @@ const FilesUploader = (props) => {
 
       let file = files[0];
 
-      FileUploader.validate(file, schema);
+      FileUploader.validate(file, this.props.schema);
 
-      setLoading(true);
+      this.setState({ loading: true });
 
-      file = await FileUploader.upload(path, file, schema);
+      file = await FileUploader.upload(
+        this.props.path,
+        file,
+        this.props.schema,
+      );
 
-      inputElement.current.value = '';
-      setLoading(false);
-      onChange([...valuesArr(), file]);
+      this.input.current.value = '';
+
+      this.setState({ loading: false });
+      this.props.onChange([...this.value(), file]);
     } catch (error) {
-      inputElement.current.value = '';
+      this.input.current.value = '';
       console.log('error', error);
-      setLoading(false);
+      this.setState({ loading: false });
       Errors.showMessage(error);
     }
   };
 
-  const formats = () => {
+  formats = () => {
+    const { schema } = this.props;
+
     if (schema && schema.formats) {
-      return schema.formats.map((format) => `.${format}`).join(',');
+      return schema.formats
+        .map((format) => `.${format}`)
+        .join(',');
     }
+
     return undefined;
   };
 
-  const uploadButton = (
-    <label className="btn btn-outline-secondary px-4 mb-2" style={{ cursor: 'pointer' }}>
-      {'Upload a file'}
-      <input
-        style={{ display: 'none' }}
-        disabled={loading || readonly}
-        accept={formats()}
-        type="file"
-        onChange={handleChange}
-        ref={inputElement}
-      />
-    </label>
-  );
+  render() {
+    const { max, readonly } = this.props;
+    const { loading } = this.state;
 
-  return (
-    <div>
-      {readonly || (max && fileList().length >= max) ? null : uploadButton}
+    const uploadButton = (
+      <label
+        className="btn btn-outline-secondary px-4 mb-2"
+        style={{ cursor: 'pointer' }}
+      >
+        {'Upload a file'}
+        <input
+          style={{ display: 'none' }}
+          disabled={loading || readonly}
+          accept={this.formats()}
+          type="file"
+          onChange={this.handleChange}
+          ref={this.input}
+        />
+      </label>
+    );
 
-      {valuesArr() && valuesArr().length ? (
-        <div>
-          {valuesArr().map((item) => {
-            return (
-              <div key={item.id}>
-                <i className="la la-link text-muted mr-2"></i>
-                <a href={item.publicUrl} target="_blank" rel="noopener noreferrer" download>
-                  {item.name}
-                </a>
+    return (
+      <div>
+        {readonly || (max && this.fileList().length >= max)
+          ? null
+          : uploadButton}
 
-                {!readonly && (
-                  <button
-                    className="btn btn-link"
-                    type="button"
-                    onClick={() => handleRemove(item.id)}
+        {this.value() && this.value().length ? (
+          <div>
+            {this.value().map((item) => {
+              return (
+                <div key={item.id}>
+                  <i className="la la-link text-muted me-2"></i>
+
+                  <a
+                    href={item.publicUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
                   >
-                    <i className="la la-times"></i>
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      ) : null}
-    </div>
-  );
-};
+                    {item.name}
+                  </a>
+
+                  {!readonly && (
+                    <button
+                      className="btn btn-link"
+                      type="button"
+                      onClick={() =>
+                        this.handleRemove(item.id)
+                      }
+                    >
+                      <i className="la la-times"></i>
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ) : null}
+      </div>
+    );
+  }
+}
 
 FilesUploader.propTypes = {
   readonly: PropTypes.bool,
