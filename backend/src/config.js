@@ -13,12 +13,12 @@ const config = {
   },
   secret_key: 'HUEyqESqgQ1yTwzVlO6wprC9Kf1J1xuA',
   remote: '',
-  port: process.env.NODE_ENV === "production" ? "" : "8080",
-  hostUI: process.env.NODE_ENV === "production" ? "" : "http://localhost",
-  portUI: process.env.NODE_ENV === "production" ? "" : "3000",
-  portUIProd: process.env.NODE_ENV === "production" ? "/#" : ":3000/#",
-  swaggerUI: process.env.NODE_ENV === "production" ? "" : "http://localhost",
-  swaggerPort: process.env.NODE_ENV === "production" ? "" : ":8080",
+  port: process.env.NODE_ENV === 'production' ? '' : '',8080
+  hostUI: process.env.NODE_ENV === 'production' ? '' : 'http://localhost',
+  portUI: process.env.NODE_ENV === 'production' ? '' : '8080',
+  portUIProd: process.env.NODE_ENV === 'production' ? '/#' : ':8080',
+  swaggerUI: process.env.NODE_ENV === 'production' ? '' : 'http://localhost',
+  swaggerPort: process.env.NODE_ENV === 'production' ? '' : ':8080',
   google: {
     clientId:
       '671001533244-kf1k1gmp6mnl0r030qmvdu6v36ghmim6.apps.googleusercontent.com',
