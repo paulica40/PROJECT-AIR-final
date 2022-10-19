@@ -319,6 +319,27 @@ module.exports = {
         },
         { transaction },
       );
+      await queryInterface.addColumn(
+        'participanti',
+        'Gen',
+        {
+          type: Sequelize.DataTypes.ENUM,
+
+          values: ['Barbati', 'Femei'],
+        },
+        { transaction },
+      );
+      await queryInterface.addColumn(
+        'participanti',
+        'Partener',
+        {
+          type: Sequelize.DataTypes.ENUM,
+
+          values: ['INCEPTUS', 'P-CCIBN'],
+        },
+        { transaction },
+      );
+
 
       await queryInterface.addColumn(
         'participanti',
