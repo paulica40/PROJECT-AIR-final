@@ -252,6 +252,5 @@ module.exports = function (sequelize, DataTypes) {
       as: 'updatedBy',
     });
   };
-
   return participanti;
 };
