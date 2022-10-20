@@ -1,4 +1,4 @@
-#Project_AIR - template backend,
+#AIR - template backend,
 
 #### Run App on local machine:
 
@@ -38,10 +38,10 @@
 
 - Type this command to creating a new database.
 
-  - `postgres=> CREATE DATABASE db_project_air;`
+  - `postgres=> CREATE DATABASE db_air;`
 
 - Then give that new user privileges to the new database then quit the `psql`.
-  - `postgres=> GRANT ALL PRIVILEGES ON DATABASE db_project_air TO admin;`
+  - `postgres=> GRANT ALL PRIVILEGES ON DATABASE db_air TO admin;`
   - `postgres=> \q`
 
 ---

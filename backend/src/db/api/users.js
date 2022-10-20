@@ -3,6 +3,9 @@ const FileDBApi = require('./file');
 const crypto = require('crypto');
 const Utils = require('../utils');
 
+const bcrypt = require('bcrypt');
+const config = require('../../config');
+
 const Sequelize = db.Sequelize;
 const Op = Sequelize.Op;
 
@@ -60,6 +63,12 @@ module.exports = class UsersDBApi {
     const users = await db.users.findByPk(id, {
       transaction,
     });
+
+    if (data.password) {
+      data.password = bcrypt.hashSync(data.password, config.bcrypt.saltRounds);
+    } else {
+      data.password = users.password;
+    }
 
     await users.update(
       {
@@ -141,10 +150,10 @@ module.exports = class UsersDBApi {
   static async findAll(filter, options) {
     var limit = filter.limit || 0;
     var offset = 0;
-    if (filter.page != 1 && filter.page) {
-      const currentPage = +filter.page - 1;
-      offset = currentPage * limit;
-    }
+    const currentPage = +filter.page;
+
+    offset = currentPage * limit;
+
     var orderBy = null;
 
     const transaction = (options && options.transaction) || undefined;
@@ -337,9 +346,13 @@ module.exports = class UsersDBApi {
     let { rows, count } = await db.users.findAndCountAll({
       where,
       include,
+      distinct: true,
       limit: limit ? Number(limit) : undefined,
       offset: offset ? Number(offset) : undefined,
-      order: orderBy ? [orderBy.split('_')] : [['createdAt', 'DESC']],
+      order:
+        filter.field && filter.sort
+          ? [[filter.field, filter.sort]]
+          : [['createdAt', 'desc']],
       transaction,
     });
 
@@ -358,21 +371,21 @@ module.exports = class UsersDBApi {
       where = {
         [Op.or]: [
           { ['id']: Utils.uuid(query) },
-          Utils.ilike('users', 'firstName', query),
+          Utils.ilike('users', 'id', query),
         ],
       };
     }
 
     const records = await db.users.findAll({
-      attributes: ['id', 'firstName'],
+      attributes: ['id', 'id'],
       where,
       limit: limit ? Number(limit) : undefined,
-      orderBy: [['firstName', 'ASC']],
+      orderBy: [['id', 'ASC']],
     });
 
     return records.map((record) => ({
       id: record.id,
-      label: record.firstName,
+      label: record.id,
     }));
   }
 
@@ -501,14 +514,16 @@ module.exports = class UsersDBApi {
     const token = crypto.randomBytes(20).toString('hex');
     const tokenExpiresAt = Date.now() + 360000;
 
-    await users.update(
-      {
-        [keyNames[0]]: token,
-        [keyNames[1]]: tokenExpiresAt,
-        updatedById: currentUser.id,
-      },
-      { transaction },
-    );
+    if (users) {
+      await users.update(
+        {
+          [keyNames[0]]: token,
+          [keyNames[1]]: tokenExpiresAt,
+          updatedById: currentUser.id,
+        },
+        { transaction },
+      );
+    }
 
     return token;
   }

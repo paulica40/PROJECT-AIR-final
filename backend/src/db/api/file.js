@@ -1,5 +1,6 @@
 const db = require('../models');
 const assert = require('assert');
+const services = require('../../services/file');
 
 module.exports = class FileDBApi {
   static async replaceRelationFiles(relation, rawFiles, options) {
@@ -63,6 +64,7 @@ module.exports = class FileDBApi {
     });
 
     for (let file of filesToDelete) {
+      await services.deleteGCloud(file.privateUrl);
       await file.destroy({
         transaction,
       });

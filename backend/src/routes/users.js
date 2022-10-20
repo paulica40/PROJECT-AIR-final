@@ -267,6 +267,8 @@ router.get(
   wrapAsync(async (req, res) => {
     const payload = await UsersDBApi.findBy({ id: req.params.id });
 
+    delete payload.password;
+
     res.status(200).send(payload);
   }),
 );

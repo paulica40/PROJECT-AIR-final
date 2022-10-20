@@ -16,20 +16,14 @@ const fileRoutes = require('./routes/file');
 
 const usersRoutes = require('./routes/users');
 
-const participantiRoutes = require('./routes/participanti');
-
-const indicatoriRoutes = require('./routes/indicatori');
-
-const cursuriRoutes = require('./routes/cursuri');
-
 const options = {
   definition: {
     openapi: '3.0.0',
     info: {
       version: '1.0.0',
-      title: 'Project_AIR',
+      title: 'AIR',
       description:
-        'Project_AIR Online REST API for Testing and Prototyping application. You can perform all major operations with your entities - create, delete and etc.',
+        'AIR Online REST API for Testing and Prototyping application. You can perform all major operations with your entities - create, delete and etc.',
     },
     servers: [
       {
@@ -85,24 +79,6 @@ app.use(
   usersRoutes,
 );
 
-app.use(
-  '/api/participanti',
- 
-  participantiRoutes,
-);
-
-app.use(
-  '/api/indicatori',
-  passport.authenticate('jwt', { session: false }),
-  indicatoriRoutes,
-);
-
-app.use(
-  '/api/cursuri',
-  passport.authenticate('jwt', { session: false }),
-  cursuriRoutes,
-);
-
 const publicDir = path.join(__dirname, '../public');
 
 if (fs.existsSync(publicDir)) {
@@ -113,7 +89,7 @@ if (fs.existsSync(publicDir)) {
   });
 }
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8080;
 
 db.sequelize.sync().then(function () {
   app.listen(PORT, () => {

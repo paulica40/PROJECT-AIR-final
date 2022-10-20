@@ -26,4 +26,5 @@ describe('Layout', () => {
     );
     expect(wrapper.find('div.child').length).to.eq(1);
   });
+
 });
