@@ -84,7 +84,7 @@ module.exports = {
         'users',
         'role',
         {
-          type: Sequelize.DataTypes.ENUM,
+          type: Sequelize.DataTypes.STRING,
 
           values: ['admin', 'user'],
         },
@@ -205,6 +205,51 @@ module.exports = {
 
       await queryInterface.addColumn(
         'participanti',
+        'Partener',
+        {
+          type: Sequelize.DataTypes.STRING,
+
+          values: ['INCEPTUS', 'P-CCIBN'],
+        },
+        { transaction },
+      );
+
+      await queryInterface.addColumn(
+        'participanti',
+        'Status',
+        {
+          type: Sequelize.DataTypes.STRING,
+
+          values: ['Finalizare implicare proiect', 'Abandon','Alte motive'],
+        },
+        { transaction },
+      );
+
+
+      await queryInterface.addColumn(
+        'participanti',
+        'Pocu',
+        {
+          type: Sequelize.DataTypes.STRING,
+
+          values: ['DA', 'NU'],
+        },
+        { transaction },
+      );
+
+      await queryInterface.addColumn(
+        'participanti',
+        'Functie',
+        {
+          type: Sequelize.DataTypes.TEXT,
+        },
+        { transaction },
+      );
+
+
+
+      await queryInterface.addColumn(
+        'participanti',
         'Nume',
         {
           type: Sequelize.DataTypes.TEXT,
@@ -313,33 +358,12 @@ module.exports = {
         'participanti',
         'Gen',
         {
-          type: Sequelize.DataTypes.ENUM,
+          type: Sequelize.DataTypes.STRING,
 
           values: ['Barbati', 'Femei'],
         },
         { transaction },
       );
-      await queryInterface.addColumn(
-        'participanti',
-        'Gen',
-        {
-          type: Sequelize.DataTypes.ENUM,
-
-          values: ['Barbati', 'Femei'],
-        },
-        { transaction },
-      );
-      await queryInterface.addColumn(
-        'participanti',
-        'Partener',
-        {
-          type: Sequelize.DataTypes.ENUM,
-
-          values: ['INCEPTUS', 'P-CCIBN'],
-        },
-        { transaction },
-      );
-
 
       await queryInterface.addColumn(
         'participanti',
@@ -354,7 +378,7 @@ module.exports = {
         'participanti',
         'Judet',
         {
-          type: Sequelize.DataTypes.ENUM,
+          type: Sequelize.DataTypes.STRING,
 
           values: [
             'Alba',
@@ -391,7 +415,7 @@ module.exports = {
         'participanti',
         'Domiciliul',
         {
-          type: Sequelize.DataTypes.ENUM,
+          type: Sequelize.DataTypes.STRING,
 
           values: ['Urban', 'Rural'],
         },
@@ -420,7 +444,7 @@ module.exports = {
         'participanti',
         'Statut',
         {
-          type: Sequelize.DataTypes.ENUM,
+          type: Sequelize.DataTypes.STRING,
 
           values: ['Angajat', 'PFA'],
         },
@@ -431,7 +455,7 @@ module.exports = {
         'participanti',
         'ISCED',
         {
-          type: Sequelize.DataTypes.ENUM,
+          type: Sequelize.DataTypes.STRING,
 
           values: [
             'ISCED 2',
@@ -619,6 +643,10 @@ module.exports = {
         transaction,
       });
 
+      await queryInterface.removeColumn('participanti', 'Functie', {
+        transaction,
+      });
+
       await queryInterface.removeColumn('participanti', 'Domiciliul', {
         transaction,
       });
@@ -664,6 +692,19 @@ module.exports = {
       await queryInterface.removeColumn('participanti', 'Nume', {
         transaction,
       });
+
+      await queryInterface.removeColumn('participanti', 'Pocu', {
+        transaction,
+      });
+
+      await queryInterface.removeColumn('participanti', 'Status', {
+        transaction,
+      });
+
+      await queryInterface.removeColumn('participanti', 'Partener', {
+        transaction,
+      });
+
 
       await queryInterface.dropTable('participanti', { transaction });
 

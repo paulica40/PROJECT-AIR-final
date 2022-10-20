@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LinksGroupComponent from '../../components/Sidebar/LinksGroup/LinksGroup'
+import LinksGroupComponent from '../../components/Sidebar/LinksGroup/LinksGroup';
 import s from './styles.module.scss';
 
 export const LinksGroup = (props) => (
