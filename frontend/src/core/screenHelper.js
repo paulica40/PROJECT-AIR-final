@@ -1,6 +1,6 @@
 const config = {
-  name: 'react user management',
-  title: 'React User Management built with React JS by Flatlogic',
+  name: 'sing',
+  title: 'Sing Dashboard App built with React JS by Flatlogic',
   version: '3.8.0',
   settings: {
     screens: {
@@ -19,8 +19,6 @@ const config = {
 
 export default function isScreen(size) {
   const screenPx = window.innerWidth;
-  return (
-    (screenPx >= config.settings.screens[`${size}-min`] || size === 'xs') &&
-    (screenPx <= config.settings.screens[`${size}-max`] || size === 'xl')
-  );
+  return (screenPx >= config.settings.screens[`${size}-min`] || size === 'xs')
+    && (screenPx <= config.settings.screens[`${size}-max`] || size === 'xl');
 }

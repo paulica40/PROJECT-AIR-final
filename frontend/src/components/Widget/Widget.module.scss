@@ -23,14 +23,14 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: #f9fbfd;
+  background: #F9FBFD;
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 55;
 }
 
-:global .fullscreened {
-  position: fixed !important;
+:global .fullscreened{
+  position: fixed!important;
   top: 50%;
   right: 0px;
   bottom: 0px;
@@ -38,12 +38,12 @@
   left: 50%;
   margin: 0px;
   z-index: 10000;
-  transform: translate(-50%, -50%) !important;
+  transform: translate(-50%, -50%)!important;
 }
 
-@media (max-width: 1400px) {
-  :global .fullscreened {
-    position: fixed !important;
+@media(max-width: 1400px) {
+  :global .fullscreened{
+    position: fixed!important;
     top: 50%;
     height: 70vh;
     right: 0px;
@@ -51,13 +51,13 @@
     left: 50%;
     margin: 0px;
     z-index: 10000;
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%)!important;
   }
 }
 
-@media (max-width: 992px) {
-  :global .fullscreened {
-    position: fixed !important;
+@media(max-width: 992px) {
+  :global .fullscreened{
+    position: fixed!important;
     top: 50%;
     height: 90vh;
     width: 90vw;
@@ -66,18 +66,18 @@
     left: 50%;
     margin: 0px;
     z-index: 10000;
-    transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%)!important;
   }
 }
 
 :global .widget.collapsed {
   > header {
-    transition: padding 0.3s linear;
+    transition: padding .3s linear;
     transition-delay: 0.2s;
     padding: $widget-padding-vertical $widget-padding-horizontal;
   }
   > h5 {
-    transition: padding 0.3s, margin-bottom 0.3s linear;
+    transition: padding .3s, margin-bottom .3s linear;
     transition-delay: 0.2s;
     padding: $widget-padding-vertical $widget-padding-horizontal;
     margin-bottom: 0;
@@ -88,13 +88,13 @@
   display: block;
   position: relative;
   margin-bottom: $grid-gutter-width;
-
+  
   background: $widget-bg-color;
   border-radius: $widget-border-radius;
   box-shadow: var(--widget-shadow);
 
   > header {
-    transition: padding 0.3s linear;
+    transition: padding .3s linear;
     padding: $widget-padding-vertical $widget-padding-horizontal 0;
 
     h1,
@@ -141,8 +141,8 @@
 
 .widget {
   &:global.p-0 .widget-body {
-    padding: 0 !important;
-  }
+      padding: 0!important;
+  }  
 }
 
 .widgetBody {
@@ -202,6 +202,10 @@
         position: relative;
         top: 2px;
       }
+
+      .glyphicon {
+        font-size: 0.7rem;
+      }
     }
   }
 }
@@ -210,6 +214,12 @@
   top: 2px;
   position: relative;
   margin-left: 3px;
+
+  :global {
+    .glyphicon {
+      vertical-align: baseline;
+    }
+  }
 }
 
 :global {
@@ -263,7 +273,7 @@
   }
 
   .widget-padding-lg {
-    padding: $widget-padding-vertical * 2 $widget-padding-horizontal * 2;
+    padding: $widget-padding-vertical*2 $widget-padding-horizontal*2;
   }
 
   .widget-body-container {
