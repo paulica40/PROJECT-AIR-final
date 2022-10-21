@@ -1,32 +1,32 @@
 const express = require('express');
+
 const config = require('../config');
 const path = require('path');
 const passport = require('passport');
-const services = require('../services/file');
+const { fileRequest } = require('../services/file');
+
 const router = express.Router();
 
 router.get('/download', (req, res) => {
-  if (process.env.NODE_ENV == "production") {
-    services.downloadGCloud(req, res);
+  const privateUrl = req.query.privateUrl;
+
+  if (!privateUrl) {
+    return res.sendStatus(404);
   }
-  else {
-    services.downloadLocal(req, res);
-  }
+
+  res.download(path.join(config.uploadDir, privateUrl));
 });
 
-router.post('/upload/:table/:field', passport.authenticate('jwt', {session: false}), (req, res) => {
-  const fileName = `${req.params.table}/${req.params.field}`;
-
-  if (process.env.NODE_ENV == "production") {
-    services.uploadGCloud(fileName, req, res);
-  }
-  else {
-    services.uploadLocal(fileName, {
+router.post(
+  '/upload/users/avatar',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    fileRequest('users/avatar', {
       entity: null,
       maxFileSize: 10 * 1024 * 1024,
       folderIncludesAuthenticationUid: false,
     })(req, res);
-  }
-});
+  },
+);
 
 module.exports = router;

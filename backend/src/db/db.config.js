@@ -1,5 +1,3 @@
-
-
 module.exports = {
   production: {
     dialect: 'mysql',
@@ -8,7 +6,7 @@ module.exports = {
     database: process.env.DB_NAME,
     timestamps: false,
     dialectOptions: {
-      socketPath: process.env.DB_HOST
+      socketPath: process.env.DB_HOST,
     },
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
@@ -18,10 +16,10 @@ module.exports = {
   development: {
     username: 'root',
     dialect: 'mysql',
-    password: '',
-    database: 'db_air',
+    password: 'miriam',
+    database: 'air',
     host: process.env.DEV_DB_HOST || 'localhost',
     logging: console.log,
     seederStorage: 'sequelize',
-  }
+  },
 };
