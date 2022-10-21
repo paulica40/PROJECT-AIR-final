@@ -7,46 +7,20 @@
   @include transition(height 0.15s ease-in-out);
 }
 
-$opacity-variants: (
-  10: 0.1,
-  20: 0.2,
-  30: 0.3,
-  40: 0.4,
-  50: 0.5,
-  60: 0.6,
-  70: 0.7,
-  80: 0.8,
-  90: 0.9,
-);
+$opacity-variants: (10: 0.1, 20: 0.2, 30: 0.3, 40: 0.4, 50: 0.5, 60: 0.6, 70: 0.7, 80: 0.8, 90: 0.9);
 
 @include property-variants('.opacity', 'opacity', $opacity-variants);
 
-$width-variants: (
-  50: 50px,
-  100: 100px,
-  150: 150px,
-  200: 200px,
-);
+$width-variants: (50: 50px, 100: 100px, 150: 150px, 200: 200px);
 
 @include property-variants('.width', 'width', $width-variants);
 
-$height-variants: (
-  50: 50px,
-  100: 100px,
-  150: 150px,
-  200: 200px,
-  250: 250px,
-);
+$height-variants: (50: 50px, 100: 100px, 150: 150px, 200: 200px, 250: 250px);
 
 @include property-variants('.height', 'height', $height-variants);
 @include property-variants('.max-height', 'max-height', $height-variants);
 
-$z-index-variants: (
-  more: 1,
-  less: -1,
-  '10': 10,
-  '-10': -10,
-);
+$z-index-variants: (more: 1, less: -1, '10': 10, '-10': -10);
 
 @include property-variants('.z-index', 'z-index', $z-index-variants);
 
@@ -96,42 +70,18 @@ $z-index-variants: (
   border: #{$line-height-base/5}em solid transparent;
 
   // stylelint-disable
-  &.circle-o-danger {
-    border-color: theme-color('danger');
-  }
-  &.circle-o-warning {
-    border-color: theme-color('warning');
-  }
-  &.circle-o-success {
-    border-color: theme-color('success');
-  }
-  &.circle-o-info {
-    border-color: theme-color('info');
-  }
-  &.circle-o-primary {
-    border-color: theme-color('primary');
-  }
-  &.circle-o-black {
-    border-color: $black;
-  }
-  &.circle-o-gray-darker {
-    border-color: $gray-900;
-  }
-  &.circle-o-gray-dark {
-    border-color: $gray-800;
-  }
-  &.circle-o-gray {
-    border-color: $gray-700;
-  }
-  &.circle-o-gray-light {
-    border-color: $gray-600;
-  }
-  &.circle-o-gray-lighter {
-    border-color: $gray-200;
-  }
-  &.circle-o-white {
-    border-color: $white;
-  }
+  &.circle-o-danger { border-color: theme-color('danger') };
+  &.circle-o-warning { border-color: theme-color('warning') };
+  &.circle-o-success { border-color: theme-color('success') };
+  &.circle-o-info { border-color: theme-color('info') };
+  &.circle-o-primary { border-color: theme-color('primary') };
+  &.circle-o-black { border-color: $black };
+  &.circle-o-gray-darker { border-color: $gray-900 };
+  &.circle-o-gray-dark { border-color: $gray-800 };
+  &.circle-o-gray { border-color: $gray-700 };
+  &.circle-o-gray-light { border-color: $gray-600 };
+  &.circle-o-gray-lighter { border-color: $gray-200 };
+  &.circle-o-white { border-color: $white };
   // stylelint-enable
 }
 
@@ -193,7 +143,7 @@ $z-index-variants: (
   }
 }
 
-@include bg-variant('.bg-dark', $text-color, $ignore-warning: true);
+@include bg-variant('.bg-dark', $text-color);
 
 .td-underline {
   text-decoration: underline;
@@ -244,21 +194,22 @@ $z-index-variants: (
 
 //copy bg classes after bootstrap so it's possible to overload other bootstrap classes
 
-@include bg-variant('.bg-primary', theme-color('primary'), $ignore-warning: true);
-@include bg-variant('.bg-success', theme-color('success'), $ignore-warning: true);
-@include bg-variant('.bg-info', theme-color('info'), $ignore-warning: true);
-@include bg-variant('.bg-warning', theme-color('warning'), $ignore-warning: true);
-@include bg-variant('.bg-danger', theme-color('danger'), $ignore-warning: true);
-@include bg-variant('.bg-body', $body-bg, $ignore-warning: true);
-@include bg-variant('.bg-body-light', $body-bg-light, $ignore-warning: true);
-@include bg-variant('.bg-gray', $gray-700, $ignore-warning: true);
-@include bg-variant('.bg-gray-transparent', rgba($gray-700, 0.6), $ignore-warning: true);
-@include bg-variant('.bg-gray-dark', $gray-800, $ignore-warning: true);
-@include bg-variant('.bg-black', $black, $ignore-warning: true);
-@include bg-variant('.bg-gray-light', $gray-600, $ignore-warning: true);
-@include bg-variant('.bg-gray-lighter', $gray-200, $ignore-warning: true);
-@include bg-variant('.bg-transparent', rgba(0, 0, 0, 0), $ignore-warning: true);
-@include bg-variant('.bg-white', $white, $ignore-warning: true);
+@include bg-variant('.bg-primary', theme-color('primary'));
+@include bg-variant('.bg-success', theme-color('success'));
+@include bg-variant('.bg-info', theme-color('info'));
+@include bg-variant('.bg-warning', theme-color('warning'));
+@include bg-variant('.bg-danger', theme-color('danger'));
+@include bg-variant('.bg-body', $body-bg);
+@include bg-variant('.bg-body-light', $body-bg-light);
+@include bg-variant('.bg-gray', $gray-700);
+@include bg-variant('.bg-gray-transparent', rgba($gray-700, 0.6));
+@include bg-variant('.bg-gray-dark', $gray-800);
+@include bg-variant('.bg-black', $black);
+@include bg-variant('.bg-gray-light', $gray-600);
+@include bg-variant('.bg-gray-lighter', $gray-200);
+@include bg-variant('.bg-transparent', rgba(0,0,0,0));
+@include bg-variant('.bg-white', $white);
+@include bg-variant('.bg-light-red', $light-red);
 
 .bg-body,
 .bg-body-light,
@@ -275,19 +226,19 @@ $z-index-variants: (
 
 //override bs .text-* classes so they use $brand-* variables
 
-@include text-emphasis-variant('.text-primary', theme-color('primary'), $ignore-warning: true);
-@include text-emphasis-variant('.text-success', theme-color('success'), $ignore-warning: true);
-@include text-emphasis-variant('.text-info', theme-color('info'), $ignore-warning: true);
-@include text-emphasis-variant('.text-warning', theme-color('warning'), $ignore-warning: true);
-@include text-emphasis-variant('.text-danger', theme-color('danger'), $ignore-warning: true);
-@include text-emphasis-variant('.text-link', $link-color, $ignore-warning: true);
-@include text-emphasis-variant('.text-white', $white, $ignore-warning: true);
-@include text-emphasis-variant('.text-gray', $gray-700, $ignore-warning: true);
-@include text-emphasis-variant('.text-gray-dark', $gray-800, $ignore-warning: true);
-@include text-emphasis-variant('.text-gray-light', $gray-600, $ignore-warning: true);
-@include text-emphasis-variant('.text-semi-muted', $gray-600, $ignore-warning: true);
-@include text-emphasis-variant('.text-gray-darker', $gray-900, $ignore-warning: true);
-@include text-emphasis-variant('.text-gray-lighter', $gray-200, $ignore-warning: true);
+@include text-emphasis-variant('.text-primary', theme-color('primary'));
+@include text-emphasis-variant('.text-success', theme-color('success'));
+@include text-emphasis-variant('.text-info', theme-color('info'));
+@include text-emphasis-variant('.text-warning', theme-color('warning'));
+@include text-emphasis-variant('.text-danger', theme-color('danger'));
+@include text-emphasis-variant('.text-link', $link-color);
+@include text-emphasis-variant('.text-white', $white);
+@include text-emphasis-variant('.text-gray', $gray-700);
+@include text-emphasis-variant('.text-gray-dark', $gray-800);
+@include text-emphasis-variant('.text-gray-light', $gray-600);
+@include text-emphasis-variant('.text-semi-muted', $gray-600);
+@include text-emphasis-variant('.text-gray-darker', $gray-900);
+@include text-emphasis-variant('.text-gray-lighter', $gray-200);
 
 .text-ellipsis {
   display: block;
@@ -489,7 +440,7 @@ $z-index-variants: (
   .form-control:focus,
   .form-control:focus + .input-group-addon,
   &.focus .input-group-addon {
-    @extend .input-no-border, :focus;
+    @extend .input-no-border:focus;
   }
 }
 
@@ -520,42 +471,16 @@ $z-index-variants: (
 // Style Classes
 // ----------------------------
 
-$margin-vertical-variants: (
-  xlg: 40px,
-  lg: $spacer * 3/2,
-  md: $spacer,
-  sm: $spacer/2,
-  xs: $spacer/4,
-  0: 0,
-);
-$margin-horizontal-variants: (
-  lg: 20px,
-  md: 15px,
-  sm: 10px,
-  xs: 5px,
-  0: 0,
-);
+$margin-vertical-variants: (xlg: 40px, lg: $spacer*3/2, md: $spacer, sm: $spacer/2, xs: $spacer/4, 0: 0);
+$margin-horizontal-variants: (lg: 20px, md: 15px, sm: 10px, xs: 5px, 0: 0);
 
 @include property-variants('.mt', 'margin-top', $margin-vertical-variants);
 @include property-variants('.mb', 'margin-bottom', $margin-vertical-variants);
 @include property-variants('.ml', 'margin-left', $margin-horizontal-variants);
 @include property-variants('.mr', 'margin-right', $margin-horizontal-variants);
 
-$padding-vertical-variants: (
-  xlg: 40px,
-  lg: $spacer * 3/2,
-  md: $spacer,
-  sm: $spacer/2,
-  xs: $spacer/4,
-  0: 0,
-);
-$padding-horizontal-variants: (
-  lg: 20px,
-  md: 15px,
-  sm: 10px,
-  xs: 5px,
-  0: 0,
-);
+$padding-vertical-variants: (xlg: 40px, lg: $spacer*3/2, md: $spacer, sm: $spacer/2, xs: $spacer/4, 0: 0);
+$padding-horizontal-variants: (lg: 20px, md: 15px, sm: 10px, xs: 5px, 0: 0);
 
 @include property-variants('.pt', 'padding-top', $padding-vertical-variants);
 @include property-variants('.pb', 'padding-bottom', $padding-vertical-variants);
@@ -576,36 +501,19 @@ $padding-horizontal-variants: (
   @include media-breakpoint-down($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-    .d#{$infix}-down-none {
-      display: none !important;
-    }
-    .d#{$infix}-down-inline {
-      display: inline !important;
-    }
-    .d#{$infix}-down-inline-block {
-      display: inline-block !important;
-    }
-    .d#{$infix}-down-block {
-      display: block !important;
-    }
-    .d#{$infix}-down-table {
-      display: table !important;
-    }
-    .d#{$infix}-down-table-cell {
-      display: table-cell !important;
-    }
-    .d#{$infix}-down-flex {
-      display: flex !important;
-    }
-    .d#{$infix}-down-inline-flex {
-      display: inline-flex !important;
-    }
+    .d#{$infix}-down-none { display: none !important; }
+    .d#{$infix}-down-inline { display: inline !important; }
+    .d#{$infix}-down-inline-block { display: inline-block !important; }
+    .d#{$infix}-down-block { display: block !important; }
+    .d#{$infix}-down-table { display: table !important; }
+    .d#{$infix}-down-table-cell { display: table-cell !important; }
+    .d#{$infix}-down-flex { display: flex !important; }
+    .d#{$infix}-down-inline-flex { display: inline-flex !important; }
   }
 }
 
 /* .h* + .fw-bold */
-$font-sizes: 54px, $h1-font-size, $h2-font-size, $h3-font-size, $h4-font-size, $h5-font-size,
-  $h6-font-size;
+$font-sizes: 54px, $h1-font-size, $h2-font-size, $h3-font-size, $h4-font-size, $h5-font-size, $h6-font-size;
 $i: 0;
 
 @each $font-size in $font-sizes {
@@ -635,8 +543,8 @@ $i: 0;
   min-height: 100% !important;
   opacity: 0;
   z-index: 1;
-  -webkit-transform: translate3d(0, 4%, 0) scale(0.93);
-  transform: translate3d(0, 4%, 0) scale(0.93);
+  -webkit-transform: translate3d(0, 4%, 0) scale(.93);
+  transform: translate3d(0, 4%, 0) scale(.93);
 }
 
 .fade-exit {
