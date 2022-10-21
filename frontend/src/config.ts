@@ -1,5 +1,5 @@
-const hostApi = process.env.NODE_ENV === 'development' ? 'http://localhost' : '';
-const portApi = process.env.NODE_ENV === 'development' ? 3001 : '';
+const hostApi = process.env.NODE_ENV === 'development' ? 'http://localhost' : '8080';
+const portApi = process.env.NODE_ENV === 'development' ? 8080 : '';
 const baseURLApi = `${hostApi}${portApi ? `:${portApi}` : ``}/api`;
 
 export default {
