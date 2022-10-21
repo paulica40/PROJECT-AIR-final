@@ -15,8 +15,8 @@ const config = {
   remote: '',
   port: process.env.NODE_ENV === "production" ? "" : "8080",
   hostUI: process.env.NODE_ENV === "production" ? "" : "http://localhost",
-  portUI: process.env.NODE_ENV === "production" ? "" : "8080",
-  portUIProd: process.env.NODE_ENV === "production" ? "/#" : "8080",
+  portUI: process.env.NODE_ENV === "production" ? "" : "3000",
+  portUIProd: process.env.NODE_ENV === "production" ? "/#" : "3000/#",
   swaggerUI: process.env.NODE_ENV === "production" ? "" : "http://localhost",
   swaggerPort: process.env.NODE_ENV === "production" ? "" : ":8080",
   google: {
