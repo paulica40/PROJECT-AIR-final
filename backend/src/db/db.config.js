@@ -17,7 +17,7 @@ module.exports = {
     username: 'root',
     dialect: 'mysql',
     password: '',
-    database: 'db_air',
+    database: 'db_project_air',
     host: process.env.DEV_DB_HOST || 'localhost',
     logging: console.log,
     seederStorage: 'sequelize',
