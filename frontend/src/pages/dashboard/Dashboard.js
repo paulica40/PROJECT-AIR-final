@@ -30,7 +30,7 @@ const Dashboard = () => {
   
     const fetchPopular = async () => {
      
-    const data = await fetch('http://localhost:8080/api/participanti', 
+    const data = await fetch('https://air-10871-lnm5nd2pia-uc.a.run.app/api/participanti', 
      
      
     {
