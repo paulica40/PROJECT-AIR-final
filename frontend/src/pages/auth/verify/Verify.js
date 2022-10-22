@@ -1,19 +1,28 @@
 import React from 'react';
-import { verifyEmail } from 'store/actions/authActions';
-import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { verifyEmail } from '../../../actions/auth';
+import { connect } from 'react-redux';
 
-const Verify = (props) => {
-  const dispatch = useDispatch();
+class Verify extends React.Component {
+    static propTypes = {
+        dispatch: PropTypes.func.isRequired,
+    };
 
-  React.useEffect(() => {
-    const params = new URLSearchParams(props.location.search);
-    const token = params.get('token');
-    if (token) {
-      dispatch(verifyEmail(token));
+    componentDidMount() {
+        const params = new URLSearchParams(this.props.location.search);
+        const token = params.get('token');
+        if (token) {
+            this.props.dispatch(verifyEmail(token));
+        }
     }
-  }, []);
 
-  return null;
-};
+    render() {
+      return (
+        <></>
+      );
+    }
+}
 
-export default Verify;
+export default withRouter(connect()(Verify));
+
