@@ -30,7 +30,7 @@ const Dashboard = () => {
   
     const fetchPopular = async () => {
      
-    const data = await fetch('http://localhost:3001/api/participanti', 
+    const data = await fetch('http://localhost:8080/api/participanti', 
      
      
     {
